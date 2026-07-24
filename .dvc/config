@@ -1,0 +1,4 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = E:\mlops-churn-pipeline\data\raw
