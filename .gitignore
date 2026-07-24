@@ -52,3 +52,7 @@ models/*.joblib
 # Temporary files
 *.tmp
 *.bak
+
+# MLflow
+mlruns/
+mlflow.db

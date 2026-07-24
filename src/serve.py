@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 import mlflow
 import pandas as pd
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("churn-serving")
@@ -85,8 +85,8 @@ class ChurnFeatures(BaseModel):
     MonthlyCharges: float
     TotalCharges: float
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "gender": "Female",
                 "SeniorCitizen": "0",
@@ -109,6 +109,7 @@ class ChurnFeatures(BaseModel):
                 "TotalCharges": 1020.0,
             }
         }
+    )
 
 
 class PredictionResponse(BaseModel):
