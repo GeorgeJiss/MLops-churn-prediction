@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Pull data from DVC remote
-        run: dvc pull
-
       - name: Run data validation
         run: python src/validate_data.py --path data/raw/*.csv
 
@@ -49,9 +46,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-
-      - name: Pull data from DVC remote
-        run: dvc pull
 
       - name: Train and validate model against threshold
         id: gate
