@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/churn-mlops
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/churn-mlops-pipeline
 
 jobs:
   test:

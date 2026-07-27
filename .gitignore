@@ -41,6 +41,7 @@ Thumbs.db
 
 # MLflow
 mlruns/
+mlflow.db
 
 # DVC Cache
 .dvc/cache/
@@ -52,7 +53,4 @@ models/*.joblib
 # Temporary files
 *.tmp
 *.bak
-
-# MLflow
-mlruns/
-mlflow.db
+src/sweep_train.py

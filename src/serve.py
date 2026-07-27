@@ -36,13 +36,29 @@ def load_champion_model():
 
     for alias in ("champion", "challenger"):
         try:
-            version = client.get_model_version_by_alias(REGISTERED_MODEL_NAME, alias)
+            print(f"\nTrying alias: {alias}")
+
+            version = client.get_model_version_by_alias(
+                REGISTERED_MODEL_NAME,
+                alias,
+            )
+
+            print(version)
+
             model_uri = f"models:/{REGISTERED_MODEL_NAME}@{alias}"
+
+            print(model_uri)
+
             model = mlflow.sklearn.load_model(model_uri)
-            logger.info(f"Loaded model '{REGISTERED_MODEL_NAME}' v{version.version} (alias={alias})")
+
+            print("MODEL LOADED")
+
             return model, version.version, alias
-        except Exception:
-            continue
+
+        except Exception as e:
+            print(f"\nAlias {alias} failed")
+            import traceback
+            traceback.print_exc()
 
     raise RuntimeError(
         f"No model found for '{REGISTERED_MODEL_NAME}' with alias 'champion' or 'challenger'. "

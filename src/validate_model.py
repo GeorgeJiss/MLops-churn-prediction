@@ -13,6 +13,9 @@ import argparse
 import os
 import sys
 
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8")
+
 import mlflow
 
 REGISTERED_MODEL_NAME = "churn-classifier"
