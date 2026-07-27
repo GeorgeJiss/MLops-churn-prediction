@@ -1,4 +1,6 @@
 [core]
-    remote = storage
+    remote = myremote
 ['remote "storage"']
     url = E:\mlops-churn-pipeline\data\raw
+['remote "myremote"']
+    url = https://drive.google.com/file/d/1oiTybyPSa9MSK6pu3EyZw82Sxes_L1kD/view?usp=sharing
