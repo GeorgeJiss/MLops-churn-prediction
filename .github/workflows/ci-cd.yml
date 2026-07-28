@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/churn-mlops-pipeline
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/churn-mlops
 
 jobs:
   test:
@@ -102,5 +102,14 @@ jobs:
 
       - name: Verify deployment health
         run: |
-          sleep 15
-          curl --fail "${{ secrets.DEPLOYED_APP_URL }}/health"
+          for i in $(seq 1 20); do
+            if curl --fail --max-time 10 "${{ secrets.DEPLOYED_APP_URL }}/health"; then
+              echo "Healthy"
+              exit 0
+            fi
+            echo "Not ready yet, retrying in 15s... ($i/20)"
+            sleep 15
+          done
+          echo "Service did not become healthy in time"
+          exit 1
+          
