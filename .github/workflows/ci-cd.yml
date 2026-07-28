@@ -63,6 +63,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Train model (creates mlflow.db + mlruns/)
+        run: python src/train.py --path data/raw/*.csv
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
