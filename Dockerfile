@@ -15,6 +15,7 @@ COPY src/ ./src/
 COPY data/ ./data/
 
 ENV PATH=/home/appuser/.local/bin:$PATH
+ENV PYTHONPATH=/home/appuser/.local/lib/python3.12/site-packages
 ENV MLFLOW_TRACKING_URI=sqlite:////app/mlflow.db
 ENV PREDICTION_LOG_PATH=/app/monitoring/predictions.csv
 
