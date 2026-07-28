@@ -27,6 +27,9 @@ jobs:
       - name: Run data validation
         run: python src/validate_data.py --path data/raw/*.csv
 
+      - name: Train model so tests can load it
+        run: python src/train.py --path data/raw/*.csv
+
       - name: Run unit tests
         run: pytest tests/ -v
 
